@@ -1,8 +1,24 @@
+"use client";
+import addOpinion from "@/actions/actions";
+
 export default function Opinion() {
+  const getData = async (formData: FormData) => {
+    const { data, error } = await addOpinion(formData);
+
+    if (error) {
+      alert(error);
+    } else {
+      alert("Your opinion has been added ");
+      console.log(data);
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-center ">
       <div className="text-2xl font-semibold mb-6">Opinion</div>
-      <form className="flex flex-col gap-2 p-4 rounded-lg border ">
+      <form
+        action={getData}
+        className="flex flex-col gap-2 p-4 rounded-lg border "
+      >
         <div className="flex flex-col">
           <label htmlFor="title" className=" font-medium">
             Title
